@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Users</title>
+        <link rel="stylesheet" href="{% static 'lab5/style.css' %}">
+    </head>
+    <body>
+        <h3>Add user:</h3>
+        <form action="{% url 'lab5:add' %}" method="post" class="form-field">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="submit-button">
+        </form>
+        <br>
+        <a href="{% url 'lab5:index' %}" class="button-link">Users list</a>
+    </body>
+</html>
