@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>css animation</title>
+        <style>
+            @keyframes grow{
+                0%{
+                    left: 0%;
+                    font-size: 20px;}
+                50%{
+                    left: 50%;
+                    font-size: 100px;}
+                100%{
+                    left: 0%;
+                    font-size: 20px;}
+            }
+
+            @keyframes hide{
+                from{
+                    capacity: 1;
+                    hieght: 100%;
+                    line-hieght: 100%;
+                    padding: 20px;
+                    margin-bottom: 10px;
+                }
+                to{
+                    capacity: 0;
+                    hieght: 0%;
+                    line-hieght: 0%;
+                    padding: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+
+            h1{
+                position: relative;
+                animation-name:grow;
+                animation-duration:2s;
+                <!-- this is gonna interuppt the button functionality animation-fill-mode: forward; -->
+            }
+        </style>
+        <script>
+            function addpost(contents){
+                const post= document.createElement('div');
+                post.className= 'post';
+                post.innerHTML= `${contents} <button class="hide">hide</button>`;
+                document.querySelector('#posts').append(post);
+            }
+
+            document.addEventListener('click',event =>{
+                const element= event.target;
+                if(element.className === 'hide'){
+                    element.parentElement.remove();
+                }
+            } )
+
+            document.addEventListener('DOMContentLoaded',() =>{
+                document.querySelector('#add').onclick= addpost;
+            })
+            
+            document.addEventListener('DOMContentLoaded',() =>{
+                const h1= document.querySelector('h1');
+                h1.style.animationPlayState= 'paused';
+                document.querySelector('button').onclick= () =>{
+                    if(h1.style.animationPlayState === 'paused'){
+                        h1.style.animationPlayState= 'running';
+                    }else{
+                        h1.style.animationPlayState= 'paused';
+                    }
+                }
+
+            })
+        </script>
+    </head>
+    <body>
+       <h1>hello</h1>
+       <button>click here</button>
+       <button id="add">add post</button>
+       <div id="posts"></div>
+    </body>
+</html>

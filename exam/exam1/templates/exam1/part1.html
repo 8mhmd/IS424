@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>java script</title>
+        <script>
+            var global = 10;
+            let local = 5;
+            const constant = 1;
+            
+            function counter(){
+                local++;
+                global--;
+                let heading = document.querySelector('h1.firstheading');
+                if(heading.innerHTML === 'goodbye'){
+                    heading.innerHTML = 'hello';
+                }else{
+                    heading.innerHTML = 'goodbye'
+                }
+
+                if(global % 2 === 0){
+                    alert('hello global is equal to: even number ' + global);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {document.querySelector('button').onclick = counter;})
+            <!--it takes normal function hello(){} but with no name--> 
+
+            document.addEventListener('DOMContentLoaded', () => {document.querySelector('form').onsubmit = () => {const name = document.querySelector('#name').value;
+                alert(`hello, ${name}`)
+            }})
+
+            document.addEventListener('DOMContentLoaded', () => {document.querySelectorAll('button.colorbutton').forEach(button => {button.onclick =() => {document.querySelector('#colorchanging').style.color=button.dataset.color;}});});
+        
+            document.addEventListener('DOMContentLoaded', function() {document.querySelector('select').onchange = function() {document.querySelector('#selectchange').style.color = this.value}})
+
+        
+        </script>
+    </head>
+    <body>
+        <h1 class="firstheading">hello</h1>
+
+        <h2 id="colorchanging">see the color</h2>
+        
+        <h2 id="selectchange">see select change</h2>
+        
+        <form>
+            <input aotufocus id="name" placeholder="Name" type="text">
+            <input type="submit">
+        </form>
+        
+        <button>try clicking</button>
+        <br>
+        <button class="colorbutton" data-color="red">red</button>
+        <button class="colorbutton" data-color="blue">blue</button>
+        <button class="colorbutton" data-color="green">green</button>
+        <br>
+        <select>
+            <option  value="black">Black</option>
+            <option  value="blue">Blue</option>
+            <option  value="red">Red</option>
+            <option  value="green">Green</option>
+        </select>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>api</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () =>{document.querySelector('form').onsubmit = () =>{
+                fetch('https://open.er-api.com/v6/latest/USD')
+                .then(response => response.json())
+                .then(data =>{
+                    const currencey= document.querySelector('#currencey').value.toUpperCase();
+                    const rate= data.rates[currencey];
+                    if(currencey!== undefined){
+                        document.querySelector('#div1').innerHTML=`1 dollar is equal to ${rate.toFixed(3)} ${currencey}.`;
+                    }else{document.querySelector('#div1').innerHTML=`invalid currencey.`;}
+                })
+                .catch(error =>{console.log('error:', error)});
+                return false;
+            }
+            })
+            
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="currencey" placeholder="currencey" type="text">
+            <input type="submit" value="Convert">
+        </form>
+
+        <div id="div1"></div>
+    </body>
+</html>
